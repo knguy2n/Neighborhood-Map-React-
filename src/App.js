@@ -3,9 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import Title from './title.js'
 import Media from "react-media"
+import GMap from "./map.js"
 
 
 class App extends Component {
+
+
+
+
+
   render() {
     return (
       <div className="App">
@@ -17,12 +23,18 @@ class App extends Component {
           }   
         </Media>*/}
         <Title/>
-
+        <GMap/>
 
       </div>
     );
   }
 }
+
+
+
+
+
+
 
 export default App;
 

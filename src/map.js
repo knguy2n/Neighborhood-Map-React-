@@ -2,10 +2,32 @@
 import React, { Component } from 'react';
 
 
-class gMap extends Component {
+class GMap extends Component {
+
+
+	componentDidMount() {
+		this.loadMap()
+	}
+
+	loadMap = () => {
+		loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCeQ-GblthTZ2fEPJxSd_jCYWcza_U5eGk&callback=initMap")
+		window.initMap = this.initMap
+	}
+
+	initMap = () => {
+        let map = new window.google.maps.Map(document.getElementById('map'), {
+          center: {lat: 32.748696, lng: -117.12978},
+          zoom: 8
+        });
+      }
 
 	render() {
 		return(
+			<main>
+				<div id="map"></div>
+			</main>
+			
+
 			
 			)
 	}
@@ -13,6 +35,18 @@ class gMap extends Component {
 
 
 
+function loadScript(url){
+	const index = window.document.getElementsByTagName('script')[0]
+	const script = window.document.createElement('script')
+	script.src= url
+	script.async = true
+	script.defer = true
+	index.parentNode.insertBefore(script, index)
+}
+
+/*
 
 
-export default gMap;
+*/
+
+export default GMap;
