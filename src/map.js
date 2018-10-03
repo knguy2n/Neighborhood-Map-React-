@@ -19,6 +19,13 @@ class GMap extends Component {
           center: {lat: 32.748696, lng: -117.12978},
           zoom: 8
         });
+
+
+        let marker = new window.google.maps.Marker({
+    		position: {lat: 32.748696, lng: -117.12978},
+    		map: map,
+    		title: 'Hello World!'
+    	});
       }
 
 	render() {
