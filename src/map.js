@@ -7,26 +7,62 @@ class GMap extends Component {
 
 	componentDidMount() {
 		this.loadMap()
+		
 	}
 
 	loadMap = () => {
-		loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCeQ-GblthTZ2fEPJxSd_jCYWcza_U5eGk&callback=initMap")
+		loadScript("https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCeQ-GblthTZ2fEPJxSd_jCYWcza_U5eGk&callback=initMap")
 		window.initMap = this.initMap
 	}
+
+	
+
 
 	initMap = () => {
         let map = new window.google.maps.Map(document.getElementById('map'), {
           center: {lat: 32.748696, lng: -117.12978},
-          zoom: 8
+          zoom: 12
         });
 
+		let marker = [];
+		let infoWindow = new window.google.maps.InfoWindow();
 
-        let marker = new window.google.maps.Marker({
-    		position: {lat: 32.748696, lng: -117.12978},
-    		map: map,
-    		title: 'Hello World!'
-    	});
+
+
+
+
+		const locations = [
+    		{title:'La Jolla Shores', location:{lat:32.858995, lng:-117.255745}, activity:'Places' },
+    		{title:'San Diego Zoo',location:{lat:32.735316, lng:-117.149046}, activity:'Places' },
+    		{title:'The Forum Coffee House',location:{lat:32.822429, lng:-117.184253}, activity:'Drinks' },
+    		{title:'Lucha Libre Tacos',location:{lat:32.748696, lng:-117.12978}, activity:'Food' },
+    		{title:'Dumpling Inn',location:{lat:32.824251, lng:-117.154314}, activity:'Food' },
+    		{title:'Tea n More',location:{lat:32.832921, lng:-117.159955}, activity:'Drinks' }
+    	];
+		//Uses the location array to create new array of markers to display on Map
+		for(let i = 0; i < locations.length; i++) {
+
+			//Get position from the location array
+			let position = locations[i].location;
+			let title = locations[i].title;
+			let activity = locations[i].activity
+			//Create a marker per location, and put into markers array
+			let marker = new window.google.maps.Marker({
+				map: map,
+				position: position,
+				title: title,
+				id: i,
+				activity:activity,
+				animation: window.google.maps.Animation.DROP,
+
+
+			})
+
+		}
+
       }
+
+   
 
 	render() {
 		return(
