@@ -58,6 +58,7 @@ class GMap extends Component {
 			
 			marker.addListener('click', function(){
 				populateInfoWindow(this, infoWindow);
+				toggleBounce();
 
 
 			});
@@ -68,12 +69,24 @@ class GMap extends Component {
 				infowindow.setContent('<div>' + marker.title + '</div>');
 				infowindow.open(map, marker);
 
-				// clear marker property is clear when info window is closed
+				// clear marker property and stop bounce animation is clear when info window is closed
 				infowindow.addListener('closeclick', function(){
-					infowindow.setMarker(null);
+					infowindow.marker = null;
+					marker.setAnimation(null);
 				});
 			}
-		}
+		};
+
+
+		function toggleBounce() { 
+			if (marker.getAnimation() !== null) {
+				marker.setAnimation(null);
+        } else {
+          marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        }
+
+
+      };
 
 
 		}
