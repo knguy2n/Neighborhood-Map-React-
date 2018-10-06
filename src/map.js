@@ -28,9 +28,6 @@ class GMap extends Component {
 		let infoWindow = new window.google.maps.InfoWindow();
 
 
-
-
-
 		const locations = [
     		{title:'La Jolla Shores', location:{lat:32.858995, lng:-117.255745}, activity:'Places' },
     		{title:'San Diego Zoo',location:{lat:32.735316, lng:-117.149046}, activity:'Places' },
@@ -54,9 +51,30 @@ class GMap extends Component {
 				id: i,
 				activity:activity,
 				animation: window.google.maps.Animation.DROP,
+			});
+			let markers = [];
+			//push newly created markers into markers array
+			markers.push(marker);
+			
+			marker.addListener('click', function(){
+				populateInfoWindow(this, infoWindow);
 
 
-			})
+			});
+
+		function populateInfoWindow(marker, infowindow) {
+			if (infowindow.marker != marker) {
+				infowindow.marker = marker;
+				infowindow.setContent('<div>' + marker.title + '</div>');
+				infowindow.open(map, marker);
+
+				// clear marker property is clear when info window is closed
+				infowindow.addListener('closeclick', function(){
+					infowindow.setMarker(null);
+				});
+			}
+		}
+
 
 		}
 

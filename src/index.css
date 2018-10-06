@@ -17,7 +17,7 @@ body {
   width: 36px;
   height: 30px;
   left: 36px;
-  top: 36px;
+  top: 25px;
 }
 
 .bm-cross-button {
@@ -27,7 +27,7 @@ body {
 
 .bm-menu {
   background: #28587B;
-  padding: 2.5em 1.5em 0;
+  padding: 0em 0em 0;
   font-size: 1.15em;
   
 }
