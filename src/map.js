@@ -4,6 +4,17 @@ import React, { Component } from 'react';
 
 class GMap extends Component {
 
+	state = {
+	locations: [
+   		{title:'La Jolla Shores', location:{lat:32.858995, lng:-117.255745}, activity:'Places', id:'1' },
+        {title:'San Diego Zoo',location:{lat:32.735316, lng:-117.149046}, activity:'Places', id:'2' },
+        {title:'The Forum Coffee House',location:{lat:32.822429, lng:-117.184253}, activity:'Drinks', id:'3' },
+        {title:'Lucha Libre Tacos',location:{lat:32.748696, lng:-117.12978}, activity:'Food', id:'4' },
+        {title:'Dumpling Inn',location:{lat:32.824251, lng:-117.154314}, activity:'Food', id:'5' },
+        {title:'Tea n More',location:{lat:32.832921, lng:-117.159955}, activity:'Drinks', id:'6' }
+    	]
+
+	}
 
 	componentDidMount() {
 		this.loadMap()
@@ -26,23 +37,14 @@ class GMap extends Component {
 
 		let marker = [];
 		let infoWindow = new window.google.maps.InfoWindow();
-
-
-		const locations = [
-    		{title:'La Jolla Shores', location:{lat:32.858995, lng:-117.255745}, activity:'Places' },
-    		{title:'San Diego Zoo',location:{lat:32.735316, lng:-117.149046}, activity:'Places' },
-    		{title:'The Forum Coffee House',location:{lat:32.822429, lng:-117.184253}, activity:'Drinks' },
-    		{title:'Lucha Libre Tacos',location:{lat:32.748696, lng:-117.12978}, activity:'Food' },
-    		{title:'Dumpling Inn',location:{lat:32.824251, lng:-117.154314}, activity:'Food' },
-    		{title:'Tea n More',location:{lat:32.832921, lng:-117.159955}, activity:'Drinks' }
-    	];
+	
 		//Uses the location array to create new array of markers to display on Map
-		for(let i = 0; i < locations.length; i++) {
+		for(let i = 0; i < this.state.locations.length; i++) {
 
 			//Get position from the location array
-			let position = locations[i].location;
-			let title = locations[i].title;
-			let activity = locations[i].activity
+			let position = this.state.locations[i].location;
+			let title = this.state.locations[i].title;
+			let activity = this.state.locations[i].activity
 			//Create a marker per location, and put into markers array
 			let marker = new window.google.maps.Marker({
 				map: map,
@@ -58,7 +60,7 @@ class GMap extends Component {
 			
 			marker.addListener('click', function(){
 				populateInfoWindow(this, infoWindow);
-				toggleBounce();
+				toggleBounce(this);
 
 
 			});
@@ -73,23 +75,34 @@ class GMap extends Component {
 				infowindow.addListener('closeclick', function(){
 					infowindow.marker = null;
 					marker.setAnimation(null);
+
 				});
 			}
 		};
 
 
-		function toggleBounce() { 
+		function toggleBounce(marker) { 
 			if (marker.getAnimation() !== null) {
 				marker.setAnimation(null);
         } else {
           marker.setAnimation(window.google.maps.Animation.BOUNCE);
+          stopAnimation(marker);
         }
-
+        marker.addListener('closeclick', function(){
+        	marker.setAnimation(null);
+        })
+		
 
       };
 
 
 		}
+
+		function stopAnimation(marker) {
+			setTimeout(function () {
+			marker.setAnimation(null);
+		}, 2000);
+}
 
       }
 

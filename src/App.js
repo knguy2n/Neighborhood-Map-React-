@@ -4,9 +4,31 @@ import './App.css';
 import Title from './title.js'
 import Media from "react-media"
 import GMap from "./map.js"
-
+import SquareAPI from "./API/"
 
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+    venues:[],
+    markers:[],
+    center:[],
+    zoom: 15
+    };
+  }
+  
+  componentDidMount() {
+    SquareAPI.search({
+      near: "San Diego, CA",
+      query: "dumplings",
+      limit: 10,
+
+    }). then(results =>{
+      console.log(results);
+    });
+  }
+  
 
 
 
