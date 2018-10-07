@@ -14,18 +14,33 @@ class App extends Component {
     venues:[],
     markers:[],
     center:[],
-    zoom: 15
+    zoom: 15,
+    query: ""
+
     };
   }
   
   componentDidMount() {
     SquareAPI.search({
       near: "San Diego, CA",
-      query: "dumplings",
+      query: this.state.query,
       limit: 10,
 
-    }). then(results =>{
+    }).then(results => {
       console.log(results);
+      const {venues} = results.response;
+      const {center} = results.response.geocode.feature.geometry;
+      
+      const {markers} = venues.map(venue => {
+        return {
+          lat: venue.location.lat,
+          lng: venue.location.lng,
+          isOpen: false,
+          isVisable: true,
+        };       
+      });
+      this.setState({venues,center,markers});
+      
     });
   }
   
@@ -45,7 +60,7 @@ class App extends Component {
           }   
         </Media>*/}
         <Title/>
-        <GMap/>
+        <GMap {...this.state}/>
 
       </div>
     );
