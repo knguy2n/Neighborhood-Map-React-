@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Title from './title.js'
 import Media from "react-media"
-import GMap from "./map.js"
+import Map from "./map.js"
 import SquareAPI from "./API/"
 
 class App extends Component {
@@ -14,8 +14,8 @@ class App extends Component {
     venues:[],
     markers:[],
     center:[],
-    zoom: 15,
-    query: ""
+    zoom: 12,
+    query: "pizza"
 
     };
   }
@@ -31,13 +31,15 @@ class App extends Component {
       const {venues} = results.response;
       const {center} = results.response.geocode.feature.geometry;
       
-      const {markers} = venues.map(venue => {
+      const markers = venues.map(venue => {
         return {
           lat: venue.location.lat,
           lng: venue.location.lng,
           isOpen: false,
-          isVisable: true,
-        };       
+          isVisible: true,
+
+        };   
+        console.log({markers});    
       });
       this.setState({venues,center,markers});
       
@@ -60,7 +62,7 @@ class App extends Component {
           }   
         </Media>*/}
         <Title/>
-        <GMap {...this.state}/>
+        <Map {...this.state}/>
 
       </div>
     );
