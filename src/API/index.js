@@ -1,3 +1,7 @@
+// FourSquare API call
+// Source: Forrest's tutorial
+
+
 
 class Helper{
 	static baseURL() {

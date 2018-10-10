@@ -15,12 +15,11 @@ class Hamburger extends React.Component {
     return (
     	<div height={'100%'} >
     		<Menu width={'25%'} className='sdPlaces'>
-          {this.props.locations.map((location, key) => (
-            <a href="" key={location.id}>
-              {location.title}
-            </a>
-
-            ))}
+          <div className="places">
+           
+          </div>
+          
+          
 
         </Menu>
     	</div>

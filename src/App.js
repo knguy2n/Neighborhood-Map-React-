@@ -15,19 +15,49 @@ class App extends Component {
     markers:[],
     center:[],
     zoom: 12,
-    query: "pizza"
+    query: "bars"
 
     };
   }
+
+  
+  
+  toggleBounce = (marker) => {
+    marker.setAnimation(window.google.maps.Animation.BOUNCE);
+  };
+
+  openInfoWindow = (marker) => {
+    this.closeInfoWindow();  
+    marker.isOpen = true;
+    this.setState({markers: Object.assign(this.state.markers, marker)});
+    const venue = this.state.venues.find(venue => venue.id ===marker.id);
+    SquareAPI.getVenueDetails(marker.id).then(res => {
+      const newVenue = Object.assign(venue, res.response.venue );
+      this.setState({venues: Object.assign(this.state.venues, newVenue)});
+    })
+};
+   
+
+  
+  
+
+  closeInfoWindow = () => { 
+    let markers = this.state.markers.map(marker => {
+      marker.isOpen = false;
+      return marker;
+    });
+    this.setState({markers: Object.assign(this.state.markers, markers)});
+  }
+
   
   componentDidMount() {
     SquareAPI.search({
       near: "San Diego, CA",
       query: this.state.query,
-      limit: 10,
+      limit: 20,
 
     }).then(results => {
-      console.log(results);
+     
       const {venues} = results.response;
       const {center} = results.response.geocode.feature.geometry;
       
@@ -37,9 +67,10 @@ class App extends Component {
           lng: venue.location.lng,
           isOpen: false,
           isVisible: true,
+          id: venue.id
 
         };   
-        console.log({markers});    
+         
       });
       this.setState({venues,center,markers});
       
@@ -61,8 +92,10 @@ class App extends Component {
           ( <p>The document is at least 600px wide.</p>)
           }   
         </Media>*/}
-        <Title/>
-        <Map {...this.state}/>
+        <Title {...this.state}/>
+        <Map {...this.state}
+          openInfoWindow={this.openInfoWindow}
+        />
 
       </div>
     );
