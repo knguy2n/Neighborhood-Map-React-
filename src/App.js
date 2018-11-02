@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+/* global google */
+
+import React, { Component } from 'react'
+import logo from './logo.svg'
 import './App.css';
 import Title from './title.js'
 import Media from "react-media"
@@ -15,7 +17,7 @@ class App extends Component {
     markers:[],
     center:[],
     zoom: 12,
-    query: "bars"
+    query: "chicken"
 
     };
   }
@@ -23,7 +25,7 @@ class App extends Component {
   
   
   toggleBounce = (marker) => {
-    marker.setAnimation(window.google.maps.Animation.BOUNCE);
+    marker.setAnimation(google.maps.Animation.BOUNCE);
   };
 
   openInfoWindow = (marker) => {
@@ -31,6 +33,7 @@ class App extends Component {
     marker.isOpen = true;
     this.setState({markers: Object.assign(this.state.markers, marker)});
     const venue = this.state.venues.find(venue => venue.id ===marker.id);
+    
     SquareAPI.getVenueDetails(marker.id).then(res => {
       const newVenue = Object.assign(venue, res.response.venue );
       this.setState({venues: Object.assign(this.state.venues, newVenue)});
@@ -63,8 +66,8 @@ class App extends Component {
       
       const markers = venues.map(venue => {
         return {
-          lat: venue.location.lat,
-          lng: venue.location.lng,
+          lat: parseFloat(venue.location.lat),
+          lng: parseFloat(venue.location.lng),
           isOpen: false,
           isVisible: true,
           id: venue.id
@@ -85,16 +88,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/*<Media query="(max-width: 599px)">
-          {matches => matches ? (
-          <p>The document is less than 600px wide.</p>
-          ) : 
-          ( <p>The document is at least 600px wide.</p>)
-          }   
-        </Media>*/}
         <Title {...this.state}/>
         <Map {...this.state}
           openInfoWindow={this.openInfoWindow}
+          toggleBounce={this.toggleBounce}
         />
 
       </div>

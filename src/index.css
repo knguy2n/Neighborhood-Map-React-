@@ -44,3 +44,8 @@ body {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+.search-locations {
+  margin-left: 10%;
+  width: 75%;
+}
