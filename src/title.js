@@ -30,7 +30,7 @@ class Title extends React.Component {
           				(<h1>Kien's Neighborhood Map</h1>)
           			}		
         		</Media>
-				<Hamburger {...this.props} pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }/>
+				{/*<Hamburger {...this.props} pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }/>*/}
 
 			</nav>
 

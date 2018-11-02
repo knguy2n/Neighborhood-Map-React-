@@ -7,6 +7,7 @@ import Title from './title.js'
 import Media from "react-media"
 import Map from "./map.js"
 import SquareAPI from "./API/"
+import Sidebar from "./sidebar.js"
 
 class App extends Component {
 
@@ -88,11 +89,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Title {...this.state}/>
+        <Sidebar {...this.state}/>
         <Map {...this.state}
           openInfoWindow={this.openInfoWindow}
           toggleBounce={this.toggleBounce}
         />
+        
 
       </div>
     );

@@ -1,13 +1,17 @@
 
-
-
 import React, { Component } from 'react'
 
 
 class Venueitem extends Component {
 	render() {
-		return(<div className="venueitm">
+		return(
+			<li className="venueitem">
+				{this.props.name}
+			</li>
 
-			</div>)
+			
+		)
 	}
 }
+
+export default Venueitem;
