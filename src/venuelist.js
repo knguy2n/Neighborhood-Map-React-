@@ -11,6 +11,7 @@ class Venuelist extends Component {
 				{this.props.venues && 
 					this.props.venues.map((venue,idx) => (<Venueitem key={idx} {...venue} 
 				handleListItemClick={this.props.handleListItemClick}
+				sidebarToggleHandler={this.props.sidebarToggleHandler}
 					  /> ))}
 
 			</ol>

@@ -46,7 +46,9 @@ class Sidebar extends Component {
 
 	render() {
 		return(
-			<div className="sidebar">
+			<div className="sidebar"
+			
+			>
 				<input 
 					type={"search"} 
 					id={"search"}
@@ -57,6 +59,7 @@ class Sidebar extends Component {
 				{...this.props} 
 				venues={this.handleFilterVenues()}
 				handleListItemClick={this.props.handleListItemClick}
+				sidebarToggleHandler={this.props.sidebarToggleHandler}
 				/>
 				<div className="backdrop"></div>
 			</div>

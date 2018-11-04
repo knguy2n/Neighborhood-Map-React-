@@ -9,14 +9,20 @@ class Venueitem extends Component {
 				{matches =>matches ? (
 					<li 
 						className="venueitem"
-						onClick={()=> this.props.handleListItemClick(this.props)}
+						onClick={() => {
+							this.props.handleListItemClick(this.props);
+							this.props.sidebarToggleHandler();
+						}}	
 					>
 						{this.props.name}				
 					</li>
     			):(
     				<li 
     					className="venueitem"
-        				onClick={()=> this.props.handleListItemClick(this.props)}
+        				onClick={() => {
+        					this.props.handleListItemClick(this.props);
+							this.props.sidebarToggleHandler(); 
+						}}
 					>
 					<img src={this.props.categories[0].icon.prefix+
 						"32"+this.props.categories[0].icon.suffix} 

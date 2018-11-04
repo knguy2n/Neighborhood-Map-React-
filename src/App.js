@@ -23,6 +23,11 @@ class App extends Component {
     };
   }
 
+  handleClicks = () => {
+    this.sidebarToggleHandler;
+    this.handleListItemClick;
+  };
+
   sidebarToggleHandler = () => {
     this.setState((prevState) => {
       return {sidebarOpen: !prevState.sidebarOpen};
@@ -92,16 +97,22 @@ class App extends Component {
 
 
   render() {
-    let sidebar;
-    if (this.state.sidebarOpen){
-      sidebar = <Sidebar/>; 
-    };
+    
 
 
     return (
       <div className="App"> 
-        <Title {...this.state} sidebarToggleHandler={this.sidebarToggleHandler}/ > 
-        <Sidebar {...this.state} handleListItemClick={this.handleListItemClick}  />
+        <Title {...this.state} 
+          sidebarToggleHandler={this.sidebarToggleHandler}
+          handleClicks={this.handleClicks}
+         /> 
+           
+        {this.state.sidebarOpen && 
+          <Sidebar {...this.state} 
+          handleListItemClick={this.handleListItemClick}
+          sidebarToggleHandler={this.sidebarToggleHandler}
+          handleClicks={this.handleClicks}
+            />}
         <Map {...this.state}
           openInfoWindow={this.openInfoWindow}
           toggleBounce={this.toggleBounce}
@@ -110,6 +121,7 @@ class App extends Component {
     );
   }
 }
+
 
 
 
