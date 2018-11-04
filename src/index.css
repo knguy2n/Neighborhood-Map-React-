@@ -2,8 +2,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  min-width: 350px;
+
+  font-size: 12px;
 }
+
+
+
+
+
+
+
+
+
+/*
 .menu-item {
 	color: #FFF;
 }
@@ -44,3 +55,10 @@ body {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+.search-locations {
+  margin-left: 10%;
+  width: 75%;
+}
+
+*/
