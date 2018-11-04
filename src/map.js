@@ -18,7 +18,7 @@ const MyMapComponent = withScriptjs(
     defaultCenter={{ lat: -34, lng: 150 }}
   >
     {props.markers && props.markers.filter(marker => marker.isVisible)
-    	.map((marker, index) => {
+    	.map((marker, index, arr) => {
         
         const venueInfo = props.venues.find(venue => venue.id === marker.id);
           
@@ -27,7 +27,8 @@ const MyMapComponent = withScriptjs(
               defaultAnimation={google.maps.Animation.DROP} 
               key={index} 
               position= {{ lat:marker.lat, lng:marker.lng }}
-              onClick={() => {props.openInfoWindow(marker)}}   
+              onClick={() => {props.openInfoWindow(marker)}} 
+              animation={arr.length ===1 ? google.maps.Animation.BOUNCE  : ""}  
            >
           { marker.isOpen && venueInfo.bestPhoto && (
             <InfoWindow>
@@ -51,9 +52,10 @@ export default class Map extends Component {
 		return(
 			<MyMapComponent
 				{...this.props}
+          className="gmaps"
   				googleMapURL="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCeQ-GblthTZ2fEPJxSd_jCYWcza_U5eGk"
   				loadingElement={<div style={{ height: `100%` }} />}
-  				containerElement={<div style={{ height: `100%`, width:`75%` }} />}
+  				containerElement={<div style={{ height: `100%`, width:`100%` }} />}
   				mapElement={<div style={{ height: `100%` }} />}
 			/>
 

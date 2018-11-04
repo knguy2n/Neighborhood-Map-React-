@@ -9,7 +9,9 @@ class Venuelist extends Component {
 		return(
 			<ol className="venuelist">
 				{this.props.venues && 
-					this.props.venues.map((venue,idx) => (<Venueitem key={idx} {...venue}   /> ))}
+					this.props.venues.map((venue,idx) => (<Venueitem key={idx} {...venue} 
+				handleListItemClick={this.props.handleListItemClick}
+					  /> ))}
 
 			</ol>
 		)

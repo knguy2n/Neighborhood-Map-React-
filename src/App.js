@@ -1,10 +1,7 @@
 /* global google */
-
+import Title from "./title.js"
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css';
-import Title from './title.js'
-import Media from "react-media"
 import Map from "./map.js"
 import SquareAPI from "./API/"
 import Sidebar from "./sidebar.js"
@@ -15,13 +12,22 @@ class App extends Component {
     super();
     this.state = {
     venues:[],
+    sidebarOpen:false,
     markers:[],
     center:[],
-    zoom: 12,
-    query: "chicken"
+    zoom: 11,
+    updateSuperState: obj => {
+      this.setState(obj); 
+    }
 
     };
   }
+
+  sidebarToggleHandler = () => {
+    this.setState((prevState) => {
+      return {sidebarOpen: !prevState.sidebarOpen};
+    })
+  };
 
   
   
@@ -40,10 +46,11 @@ class App extends Component {
       this.setState({venues: Object.assign(this.state.venues, newVenue)});
     })
 };
-   
 
-  
-  
+   handleListItemClick = venue => {
+    const marker = this.state.markers.find(marker => marker.id === venue.id);
+    this.openInfoWindow(marker)
+   }
 
   closeInfoWindow = () => { 
     let markers = this.state.markers.map(marker => {
@@ -57,8 +64,8 @@ class App extends Component {
   componentDidMount() {
     SquareAPI.search({
       near: "San Diego, CA",
-      query: this.state.query,
-      limit: 20,
+      query: "park",
+      limit: 10,
 
     }).then(results => {
      
@@ -84,18 +91,21 @@ class App extends Component {
 
 
 
-
-
   render() {
+    let sidebar;
+    if (this.state.sidebarOpen){
+      sidebar = <Sidebar/>; 
+    };
+
+
     return (
-      <div className="App">
-        <Sidebar {...this.state}/>
+      <div className="App"> 
+        <Title {...this.state} sidebarToggleHandler={this.sidebarToggleHandler}/ > 
+        <Sidebar {...this.state} handleListItemClick={this.handleListItemClick}  />
         <Map {...this.state}
           openInfoWindow={this.openInfoWindow}
           toggleBounce={this.toggleBounce}
         />
-        
-
       </div>
     );
   }
