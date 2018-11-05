@@ -11,7 +11,7 @@ class Sidebar extends Component {
     		venues:[]
     	};
     } 
-
+//use input to filter venues
 	handleFilterVenues = () => {
 
 		if(this.state.query.trim() !== " ") {
@@ -23,7 +23,7 @@ class Sidebar extends Component {
 		}
 		return this.props.venues;
 	};
-
+//update user input and check if new entry matches
 	handleChange = e => {
 		
 		this.setState( {query:e.target.value} );
@@ -52,9 +52,7 @@ class Sidebar extends Component {
 
 	render() {
 		return(
-			<nav className="sidebar"
-			tabIndex="1"
-			
+			<nav className="sidebar"			
 			>
 				<input 
 					type={"search"} 

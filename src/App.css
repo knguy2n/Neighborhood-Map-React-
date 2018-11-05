@@ -113,7 +113,7 @@ ol.venuelist {
 
 
 
-li.venueitem {
+.venueitem {
     list-style: none;
     font-size: 18px;
     box-shadow: 1px;

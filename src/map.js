@@ -11,8 +11,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 const MyMapComponent = withScriptjs(
  
 
-
-
+//take results from FourSquare query and create markers & infowindows
 	withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={16}
@@ -46,6 +45,13 @@ const MyMapComponent = withScriptjs(
               <React.Fragment>
                 <img src={`${venueInfo.bestPhoto.prefix}200x200${venueInfo.bestPhoto.suffix }` || null }    alt={"Venue"}  /> 
                 <p>{venueInfo.name}</p> 
+                <button
+                  onClick={() =>{props.sidebarToggleHandler()}}
+
+                >
+                  Back to Nav
+                </button>
+
               </React.Fragment>      
             </InfoWindow> 
           )}
@@ -59,6 +65,15 @@ const MyMapComponent = withScriptjs(
 
 
 export default class Map extends Component {
+
+  componentDidMount () {
+      window.gm_authFailure = () => {
+          alert('Error: Failed to get Google map.')
+          console.log('Error: Failed to get Google map.')
+      }
+    }
+
+
 	render() {
 		return(
       
@@ -66,6 +81,7 @@ export default class Map extends Component {
       
         <MyMapComponent
 				  {...this.props}
+            aria-label='map'
             className="gmaps"
   				  googleMapURL="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCeQ-GblthTZ2fEPJxSd_jCYWcza_U5eGk"
   				  loadingElement={<div style={{ height: `100%` }} />}

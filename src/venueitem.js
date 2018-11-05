@@ -7,7 +7,8 @@ class Venueitem extends Component {
 		return(
 			<Media query="(max-width: 680px)">
 				{matches =>matches ? (
-					<li 
+					<button
+						id="anchor" 
 						className="venueitem"
 						tabIndex="0"
 						onClick={() => {
@@ -16,9 +17,10 @@ class Venueitem extends Component {
 						}}	
 					>
 						{this.props.name}				
-					</li>
+					</button>
     			):(
-    				<li 
+    				<button 
+    					id="anchor" 
     					className="venueitem"
     					tabIndex="0"
         				onClick={() => {
@@ -30,7 +32,7 @@ class Venueitem extends Component {
 						"32"+this.props.categories[0].icon.suffix} 
 						alt={this.props.categories[0].name}/>
 					{this.props.name}				
-					</li>
+					</button>
     			)}
 			</Media>		
 		)
@@ -38,48 +40,3 @@ class Venueitem extends Component {
 }
 
 export default Venueitem;
-
-/*
-	<li className="venueitem"
-			onClick={()=> this.props.handleListItemClick(this.props)}
-			>
-
-				<img src={this.props.categories[0].icon.prefix+
-					"32"+this.props.categories[0].icon.suffix} 
-					alt={this.props.categories[0].name}/>
-				{this.props.name}				
-			</li>
-
-
-
-
-*/
-
-
-
-/*
-
-<Media query="(max-width: 500px)">
-	{matches =>matches ? 
-	(<li 
-		className="venueitem"
-		onClick={()=> this.props.handleListItemClick(this.props)}
-	>
-		this.props.name}				
-	</li>
-    ):(
-    <li 
-    	className="venueitem"
-        onClick={()=> this.props.handleListItemClick(this.props)}
-	>
-		<img src={this.props.categories[0].icon.prefix+
-			"32"+this.props.categories[0].icon.suffix} 
-			alt={this.props.categories[0].name}/>
-		{this.props.name}				
-	</li>
-    )}
-</Media>
-
-
-
-*/

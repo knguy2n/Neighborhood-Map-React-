@@ -23,24 +23,16 @@ class App extends Component {
     };
   }
 
-  handleClicks = () => {
-    this.sidebarToggleHandler;
-    this.handleListItemClick;
-  };
 
+//Open side nav
   sidebarToggleHandler = () => {
     this.setState((prevState) => {
       return {sidebarOpen: !prevState.sidebarOpen};
     })
   };
-
   
-  
-  toggleBounce = (marker) => {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-    marker.animation=google.maps.Animation.BOUNCE
-  };
 
+//Open infowindow and show venue details
   openInfoWindow = (marker) => {
     this.closeInfoWindow();  
     marker.isOpen = true;
@@ -66,7 +58,7 @@ class App extends Component {
     this.setState({markers: Object.assign(this.state.markers, markers)});
   }
 
-  
+//Once app is mounted to root pull results from FourSquare  
   componentDidMount() {
     SquareAPI.search({
       near: "Encinitas, CA",
@@ -74,7 +66,6 @@ class App extends Component {
       query: "beach",
       limit: 7,
       
-
     }).then(results => {
      
       const {venues} = results.response;
@@ -96,13 +87,8 @@ class App extends Component {
     });
   }
   
-
-
-
   render() {
     
-
-
     return (
       <div className="App"> 
         <Title {...this.state} 
@@ -120,17 +106,12 @@ class App extends Component {
         <Map {...this.state}
           openInfoWindow={this.openInfoWindow}
           toggleBounce={this.toggleBounce}
+          sidebarToggleHandler={this.sidebarToggleHandler}
         />
       </div>
     );
   }
 }
-
-
-
-
-
-
 
 
 export default App;

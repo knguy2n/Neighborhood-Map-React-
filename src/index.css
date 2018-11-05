@@ -6,6 +6,14 @@ body {
   font-size: 12px;
 }
 
+
+button:focus{
+  background: black;
+  color:red;
+}
+
+
+
 @media only screen and (min-width: 750px){
   body .title {
     margin-right: auto;
@@ -21,52 +29,3 @@ body {
 
 
 
-
-/*
-.menu-item {
-	color: #FFF;
-}
-
-.bm-burger-bars {
-  background: #373a47;
- }
-
-.bm-burger-button {
-  position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 25px;
-}
-
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
-
-.bm-menu {
-  background: #28587B;
-  padding: 0em 0em 0;
-  font-size: 1.15em;
-  
-}
-
-.bm-item-list {
-  color: #FFF;
-  padding: 0.8em;
-}
-
-.bm-item {
-  display: inline-block;
-}
-
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.search-locations {
-  margin-left: 10%;
-  width: 75%;
-}
-
-*/
