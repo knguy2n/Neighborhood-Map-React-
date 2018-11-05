@@ -15,7 +15,7 @@ class App extends Component {
     sidebarOpen:false,
     markers:[],
     center:[],
-    zoom: 11,
+    zoom: 10,
     updateSuperState: obj => {
       this.setState(obj); 
     }
@@ -38,6 +38,7 @@ class App extends Component {
   
   toggleBounce = (marker) => {
     marker.setAnimation(google.maps.Animation.BOUNCE);
+    marker.animation=google.maps.Animation.BOUNCE
   };
 
   openInfoWindow = (marker) => {
@@ -55,7 +56,7 @@ class App extends Component {
    handleListItemClick = venue => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.openInfoWindow(marker)
-   }
+   };
 
   closeInfoWindow = () => { 
     let markers = this.state.markers.map(marker => {
@@ -68,9 +69,11 @@ class App extends Component {
   
   componentDidMount() {
     SquareAPI.search({
-      near: "San Diego, CA",
-      query: "park",
-      limit: 10,
+      near: "Encinitas, CA",
+      intent: "checkin",
+      query: "beach",
+      limit: 7,
+      
 
     }).then(results => {
      
@@ -89,7 +92,7 @@ class App extends Component {
          
       });
       this.setState({venues,center,markers});
-      
+      console.log(results);
     });
   }
   
@@ -108,7 +111,8 @@ class App extends Component {
          /> 
            
         {this.state.sidebarOpen && 
-          <Sidebar {...this.state} 
+          <Sidebar {...this.state}
+          closeInfoWindow={this.closeInfoWindow} 
           handleListItemClick={this.handleListItemClick}
           sidebarToggleHandler={this.sidebarToggleHandler}
           handleClicks={this.handleClicks}

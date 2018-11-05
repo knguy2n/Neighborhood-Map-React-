@@ -9,6 +9,7 @@ class Venueitem extends Component {
 				{matches =>matches ? (
 					<li 
 						className="venueitem"
+						tabIndex="0"
 						onClick={() => {
 							this.props.handleListItemClick(this.props);
 							this.props.sidebarToggleHandler();
@@ -19,6 +20,7 @@ class Venueitem extends Component {
     			):(
     				<li 
     					className="venueitem"
+    					tabIndex="0"
         				onClick={() => {
         					this.props.handleListItemClick(this.props);
 							this.props.sidebarToggleHandler(); 

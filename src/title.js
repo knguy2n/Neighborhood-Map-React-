@@ -1,6 +1,6 @@
 // title
 import React, { Component } from 'react';
-import Media from "react-media"
+
 
 
 
@@ -12,8 +12,9 @@ class Title extends React.Component {
 
 			<nav className="title">
         <button className="hamburger"
-
-          onClick={this.props.sidebarToggleHandler}
+        tabIndex="0"
+        aria-label="navigation-button"
+        onClick={this.props.sidebarToggleHandler}
         >
           <div className="button-line"></div>
           <div className="button-line"></div>
