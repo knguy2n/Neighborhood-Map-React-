@@ -83,7 +83,7 @@ export default class Map extends Component {
 				  {...this.props}
             aria-label='map'
             className="gmaps"
-  				  googleMapURL="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCeQ-GblthTZ2fEPJxSd_jCYWcza_U5eGk"
+  				  googleMapURL="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=NEEDTOADDKEY"
   				  loadingElement={<div style={{ height: `100%` }} />}
   				  containerElement={<div style={{ height: `100%`, width:`100%` }} />}
   				  mapElement={<div style={{ height: `92%` }} />}

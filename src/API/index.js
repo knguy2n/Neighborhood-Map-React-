@@ -9,8 +9,8 @@ class Helper{
 	}
 	static auth() {
 		const keys = {
-			client_id: "QO1QM15Q3UHTTP0BR5J2Q3FB4KMTQGPKPVOPT4KR04SX1MIO",
-			client_secret: "EKAYVJTJZCOFQWW0V4BOK1TBAQVASRZBPU0ZWOMOJ225BM2G",
+			client_id: "ADDKEYHERE",
+			client_secret: "ADDKEYHERE",
 			v:"20181006"
 		};
 
