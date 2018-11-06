@@ -1,8 +1,19 @@
-### NPM INSTALLS
 
-react-burger-menu [https://github.com/negomi/react-burger-menu]
 
-react-media https://github.com/ReactTraining/react-media
+
+### How to Run
+1. Download repo at https://github.com/knguy2n/Neighborhood-Map-React-
+2. Open terminal and CD into project
+3. API keys are required for google maps & FourSquare 
+4. In the project folder run "NPM START"
+5. Project should load on localhost
+
+
+
+
+
+### NPM INSTALL
+  # react-google-maps
 
 
 

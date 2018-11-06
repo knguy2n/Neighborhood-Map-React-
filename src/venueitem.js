@@ -8,7 +8,7 @@ class Venueitem extends Component {
 			<Media query="(max-width: 680px)">
 				{matches =>matches ? (
 					<button
-						id="anchor" 
+						
 						className="venueitem"
 						tabIndex="0"
 						onClick={() => {
@@ -20,7 +20,7 @@ class Venueitem extends Component {
 					</button>
     			):(
     				<button 
-    					id="anchor" 
+    					
     					className="venueitem"
     					tabIndex="0"
         				onClick={() => {

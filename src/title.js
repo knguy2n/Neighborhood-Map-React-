@@ -11,10 +11,12 @@ class Title extends React.Component {
 		return(
 
 			<nav className="title">
-        <button className="hamburger"
-        tabIndex="0"
-        aria-label="navigation-button"
-        onClick={this.props.sidebarToggleHandler}
+        <button
+          
+          className="hamburger"
+          tabIndex="0"
+          aria-label="navigation-button"
+          onClick={this.props.sidebarToggleHandler}
         >
           <div className="button-line"></div>
           <div className="button-line"></div>
